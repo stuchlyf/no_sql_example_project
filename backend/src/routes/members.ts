@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
 
 		res.status(200).json(members);
 	} catch (e) {
+		console.error(JSON.stringify(e))
 		res.status(400);
 	}
 
@@ -27,6 +28,7 @@ router.get('/:id', async (req, res) => {
 
 		res.status(200).json(member);
 	} catch (e) {
+		console.error(JSON.stringify(e))
 		res.status(400).send(`couldn't find member with id ${memberId}`)
 	}
 
@@ -53,6 +55,7 @@ router.post('/', async (req, res) => {
 
 		res.status(200).json(await member.save());
 	} catch(e) {
+		console.error(JSON.stringify(e))
 		res.status(400).send('invalid member');
 	}
 
@@ -77,6 +80,7 @@ router.put('/:id', async (req, res) => {
 		})
 		res.status(200).json(member);
 	} catch(e) {
+		console.error(JSON.stringify(e))
 		res.status(400);
 	}
 
@@ -90,6 +94,7 @@ router.delete('/:id', async (req, res) => {
 		await memberModel.findByIdAndDelete(memberId);
 		res.status(200);
 	} catch (e) {
+		console.error(JSON.stringify(e))
 		res.status(400)
 	}
 
