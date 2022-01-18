@@ -1,0 +1,28 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "rimraf ./out && tsc"
+		},
+		{
+			"type": "npm",
+			"script": "dev",
+			"problemMatcher": [],
+			"label": "npm: dev",
+			"detail": "nodemon",
+			"options": {
+				"env": {
+					"DB_USERNAME": "root",
+					"DB_PASSWORD": "example",
+					"DB_DATABASE": "Sportverein",
+					"DB_URL": "localhost:27017"
+				}
+			}
+		}
+	]
+}
