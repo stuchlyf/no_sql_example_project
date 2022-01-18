@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node out/server.js",
     "dev": "nodemon",
-    "build": "rimraf ./out && tsc"
+    "build": "rimraf ./build && tsc"
   },
   "dependencies": {
     "cors": "^2.8.5",
