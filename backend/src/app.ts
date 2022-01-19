@@ -1,8 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 // Routes
-import clubsRoute from './routes/teams'
+import teamsRoute from './routes/teams'
 import membersRoute from './routes/members';
+import feesRoute from './routes/fees';
+import departmentsRoute from './routes/departments';
+import projectsRoute from './routes/projects';
 import {connectToDB} from './db';
 
 const app = express();
@@ -18,8 +21,11 @@ app.use(
 );
 app.use(express.json());
 
-app.use('/teams', clubsRoute);
+app.use('/teams', teamsRoute);
 app.use('/members', membersRoute);
+app.use('/fees', feesRoute);
+app.use('/departments', departmentsRoute);
+app.use('/projects', projectsRoute);
 
 app.get('/', (req, res) => {
 
