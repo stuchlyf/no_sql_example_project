@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  db:
+    image: mongo
+    restart: unless-stopped
+    env_file:
+      - ./.env/db.local.env
+    volumes:
+      - "mongo_db:/data/db"
+      - './mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro'
+    expose:
+      - 27017
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    env_file:
+      - ./.env/backend.local.env
+    ports:
+      - '8080:8080'
+
+volumes:
+  mongo_db:
