@@ -1,10 +1,10 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "out/main.js",
+  "main": "out/server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node out/server.js",
+    "start": "node build/server.js",
     "dev": "nodemon",
     "build": "rimraf ./build && tsc"
   },

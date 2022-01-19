@@ -19,6 +19,6 @@ RUN ["yarn", "build"]
 FROM node:14-alpine as RUN
 RUN mkdir -p /app
 WORKDIR /app
-COPY --from=build /build/build .
+COPY --from=build /build ./
 EXPOSE 8080
-ENTRYPOINT ['yarn', 'start']
+ENTRYPOINT ["yarn", "start"]
