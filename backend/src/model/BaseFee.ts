@@ -1,8 +1,9 @@
 import {model, Schema, Types} from 'mongoose';
 
-interface BaseFeeI {
-	group: string;
-	fee: number;
+export interface BaseFeeI {
+	_id: Types.ObjectId | undefined;
+	group: string | undefined;
+	fee: number | undefined;
 }
 
 export const baseFeeSchema = new Schema<BaseFeeI>({

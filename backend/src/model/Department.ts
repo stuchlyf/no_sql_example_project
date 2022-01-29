@@ -1,8 +1,9 @@
 import {model, Schema, Types} from 'mongoose'
 
-interface DepartmentI {
-	name: string;
-	fee: number;
+export interface DepartmentI {
+	_id: Types.ObjectId | undefined;
+	name: string | undefined;
+	fee: number | undefined;
 }
 
 export const departmentSchema = new Schema<DepartmentI>({

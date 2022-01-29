@@ -1,8 +1,9 @@
 import {model, Schema, Types} from 'mongoose';
 
-interface ProjectI {
-	location: string;
-	date: Date;
+export interface ProjectI {
+	_id: Types.ObjectId | undefined;
+	location: string | undefined;
+	date: Date | undefined;
 }
 
 export const projectSchema = new Schema<ProjectI>({
