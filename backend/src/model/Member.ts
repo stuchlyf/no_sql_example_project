@@ -1,6 +1,7 @@
 import {model, Schema, Types} from 'mongoose';
 import {EMAIL_REGEX, GENDER_REGEX, STREET_NUMBER_REGEX, TELEPHONE_NUMBER_REGEX} from "../utils/constants";
 import {teamModel} from './Team';
+import {baseFeeModel} from "./BaseFee";
 
 export interface MemberI {
 	_id: Types.ObjectId | undefined;
@@ -14,11 +15,17 @@ export interface MemberI {
 	zipCode: string | undefined;
 	gender: 'm' | 'w' | 'd' | undefined;
 	teamId: Types.ObjectId | undefined;
+	baseFeeId: Types.ObjectId | undefined;
 }
 
 const teamIdValidator = async (teamId: Types.ObjectId): Promise<boolean> => {
 	return await teamModel
 			.exists({_id: teamId});
+}
+
+const baseFeeIdValidator = async (baseFeeId: Types.ObjectId): Promise<Boolean> => {
+	return await baseFeeModel
+			.exists(baseFeeId);
 }
 
 export const memberSchema = new Schema<MemberI>({
@@ -31,7 +38,8 @@ export const memberSchema = new Schema<MemberI>({
 	city: {type: String, required: true},
 	zipCode: {type: String, required: true},
 	gender: {type: String, required: false, validate: GENDER_REGEX},
-	teamId: { type: Types.ObjectId, required: false, validate: teamIdValidator}
+	teamId: { type: Types.ObjectId, required: false, validate: teamIdValidator},
+	baseFeeId: { type: Types.ObjectId, required: true, validate: baseFeeIdValidator }
 })
 
 

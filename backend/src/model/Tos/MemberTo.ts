@@ -14,8 +14,9 @@ export const MemberTo: TransferObjectConstructor<MemberI> = class implements Tra
   private zipCode: string | undefined;
   private gender: 'm' | 'w' | 'd' | undefined;
   private teamId: Types.ObjectId | undefined;
+  private baseFeeId: Types.ObjectId | undefined;
 
-  private readonly mandatoryKeys: Array<keyof MemberI> = ['firstName', 'lastName', 'street', 'streetNumber', 'zipCode', 'city'];
+  private readonly mandatoryKeys: Array<keyof MemberI> = ['firstName', 'lastName', 'street', 'streetNumber', 'zipCode', 'city', 'baseFeeId'];
 
   constructor(o: object | MemberI = {}) {
     if (this.mandatoryKeys.every(el => Object.keys(o).includes(el))) {
@@ -31,6 +32,7 @@ export const MemberTo: TransferObjectConstructor<MemberI> = class implements Tra
       this.zipCode = obj.zipCode;
       this.gender = obj.gender;
       this.teamId = obj.teamId;
+      this.baseFeeId = obj.baseFeeId;
     }
   }
 
@@ -46,7 +48,8 @@ export const MemberTo: TransferObjectConstructor<MemberI> = class implements Tra
       street: this.street,
       zipCode: this.zipCode,
       gender: this.gender,
-      teamId: this.teamId
+      teamId: this.teamId,
+      baseFeeId: this.baseFeeId,
     }
   }
 }
