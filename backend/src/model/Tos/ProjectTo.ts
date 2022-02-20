@@ -1,7 +1,6 @@
 import { TransferObject, TransferObjectConstructor } from "./TransferObject";
 import {ProjectI} from '../Project';
 import { Types } from "mongoose";
-import { BaseFeeI } from "../BaseFee";
 
 export const ProjectTo: TransferObjectConstructor<ProjectI> = class implements TransferObject<ProjectI> {
   private _id: Types.ObjectId | undefined;
