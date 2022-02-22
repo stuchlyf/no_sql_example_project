@@ -10,8 +10,10 @@ services:
       - "mongo_db:/data/db"
       - './mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro'
       - './backend/docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro'
-    expose:
-      - 27017
+    ports:
+      - '27017:27017'
+#    expose:
+#      - 27017
   backend:
     build: ./backend
     depends_on:
