@@ -8,7 +8,13 @@ export const addCrudActionsToRouter = <T>(router: Router, model: Model<T>, to: T
     try {
       const result = await model.find().exec();
 
-      res.status(200).json(result);
+      if(result === null || result === undefined) {
+        throw new Error();
+      }
+
+      const response = result.map(obj => new to(obj).toObj());
+
+      res.status(200).json(response);
     } catch(e) {
       console.error(JSON.stringify(e));
       res.status(400);
@@ -26,8 +32,9 @@ export const addCrudActionsToRouter = <T>(router: Router, model: Model<T>, to: T
       if (result === null || result === undefined) {
         throw new Error();
       }
+      const response = new to(result).toObj();
 
-      res.status(200).json(result)
+      res.status(200).json(response)
     } catch(e) {
       console.error(JSON.stringify(e));
       res.status(400).send(`couldn't find entity with id ${id}`);
@@ -44,7 +51,7 @@ export const addCrudActionsToRouter = <T>(router: Router, model: Model<T>, to: T
       const e = result.validateSync();
       if(e) throw e;
 
-      res.status(200).json(await result.save());
+      res.status(200).json(new to(await result.save()).toObj());
     }catch(e) {
       console.error(JSON.stringify(e));
       res.status(400).send('invalid');
