@@ -1,20 +1,11 @@
 import { Types } from "mongoose";
 import { TeamI } from "../Team";
 import { TransferObjectConstructor, TransferObject } from "./TransferObject";
-import {MemberI, memberModel} from "../Member";
-import {MemberTo} from "./MemberTo";
 
 export const TeamTo: TransferObjectConstructor<TeamI> = class implements TransferObject<TeamI> {
   private _id: Types.ObjectId | undefined;
   private name: string | undefined;
   private league: string | undefined;
-  private get players(): Promise<Array<TransferObject<MemberI>>> {
-    return (async () => (
-        await memberModel
-            .find({teamId: this._id}))
-            .map(member => new MemberTo(member))
-    )();
-  }
 
   private readonly mandatoryKeys: Array<keyof TeamI> = ['name'];
 
@@ -27,15 +18,10 @@ export const TeamTo: TransferObjectConstructor<TeamI> = class implements Transfe
   }
 
   toObj() {
-    let players: Array<TransferObject<MemberI>> = [];
-
-    this.players.then(_players => players = _players);
-
     return {
       _id: this._id,
       name: this.name,
       league: this.league,
-      players: players,
     }
   }
 

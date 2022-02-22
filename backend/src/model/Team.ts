@@ -1,11 +1,9 @@
 import {Schema, model, Types} from 'mongoose';
-import {MemberI, memberSchema} from "./Member";
 
 export interface TeamI {
-	_id: Types.ObjectId;
-	name: string;
-	league: string;
-	players: Array<MemberI>
+	_id: Types.ObjectId | undefined;
+	name: string | undefined;
+	league: string | undefined;
 }
 
 export const teamSchema = new Schema<TeamI>({
