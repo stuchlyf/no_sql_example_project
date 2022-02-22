@@ -14,7 +14,7 @@
         "${workspaceFolder}/build/**/*.js"
       ],
       "env": {
-        "DB_USERNAME": "root",
+        "DB_USERNAME": "api_user",
         "DB_PASSWORD": "example",
         "DB_DATABASE": "Sportverein",
         "DB_URL": "localhost:27017"
