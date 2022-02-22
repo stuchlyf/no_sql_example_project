@@ -8,7 +8,6 @@ services:
       - ./.env/db.local.env
     volumes:
       - "mongo_db:/data/db"
-      - './mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro'
       - './backend/docker/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro'
     ports:
       - '27017:27017'
