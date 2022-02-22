@@ -11,13 +11,11 @@ export const BaseFeeTo: TransferObjectConstructor<BaseFeeI> = class implements T
   private readonly mandatoryKeys: Array<keyof BaseFeeI> = ['fee', 'group'];
 
   constructor(o: object | BaseFeeI = {}) {
-    if (this.mandatoryKeys.every(el => Object.keys(o).includes(el))) {
       const obj: BaseFeeI = <BaseFeeI> o;
 
       this._id = obj._id;
       this.group = obj.group;
       this.fee = obj.fee;
-    }
   }
 
   toObj(): BaseFeeI {
